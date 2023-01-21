@@ -1,13 +1,12 @@
 [package]
-name = "spirv_cross"
-version = "0.23.1"
-authors = ["Joshua Groves <josh@joshgroves.com>"]
-description = "Safe wrapper around SPIRV-Cross"
+name = "librashader-spirv-cross"
+version = "0.23.3"
+authors = ["Joshua Groves <josh@joshgroves.com>", "Ronny Chan <ronny@ronnychan.ca>"]
+description = "Temporary spirv_cross fork for librashader purposes"
 license = "MIT/Apache-2.0"
-homepage = "https://github.com/grovesNL/spirv_cross"
-repository = "https://github.com/grovesNL/spirv_cross"
+homepage = "https://github.com/chyyran/spirv_cross"
+repository = "https://github.com/chyyran/spirv_cross"
 readme = "../README.md"
-keywords = ["spirv", "cross"]
 build = "build.rs"
 edition = "2018"
 

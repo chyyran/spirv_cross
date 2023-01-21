@@ -1,3 +1,10 @@
+# librashader-spirv-cross
+
+(Hopefully) temporary fork of [spirv_cross](https://github.com/grovesNL/spirv_cross) while some changes get upstreamed.
+
+**Please do not use this.**
+---
+
 <h1 align="center">
   spirv_cross
 </h1>

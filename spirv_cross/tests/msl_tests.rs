@@ -1,4 +1,4 @@
-use spirv_cross::{msl, spirv};
+use librashader_spirv_cross::{msl, spirv};
 
 use std::collections::BTreeMap;
 
@@ -255,12 +255,12 @@ fn sets_argument_buffer_index() {
     let mut ast = spirv::Ast::<msl::Target>::parse(&module).unwrap();
     let mut resource_binding_overrides = BTreeMap::new();
     resource_binding_overrides.insert(
-        spirv_cross::msl::ResourceBindingLocation {
+        librashader_spirv_cross::msl::ResourceBindingLocation {
             stage: spirv::ExecutionModel::Fragment,
             desc_set: 0,
             binding: msl::ARGUMENT_BUFFER_BINDING,
         },
-        spirv_cross::msl::ResourceBinding {
+        librashader_spirv_cross::msl::ResourceBinding {
             buffer_id: 2,
             texture_id: 0,
             sampler_id: 0,
@@ -269,7 +269,7 @@ fn sets_argument_buffer_index() {
     );
     let mut compiler_options = msl::CompilerOptions::default();
     compiler_options.resource_binding_overrides = resource_binding_overrides;
-    compiler_options.version = spirv_cross::msl::Version::V2_0;
+    compiler_options.version = librashader_spirv_cross::msl::Version::V2_0;
     compiler_options.enable_argument_buffers = true;
     ast.set_compiler_options(&compiler_options).unwrap();
     assert_eq!(
