@@ -1,3 +1,4 @@
+#![cfg(all(feature = "hlsl", not(target_arch = "wasm32")))]
 use librashader_spirv_cross::{hlsl as lang, spirv};
 
 mod common;

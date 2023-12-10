@@ -5,6 +5,7 @@ mod common;
 use crate::common::words_from_bytes;
 
 #[test]
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
 fn glsl_compiler_options_has_default() {
     let compiler_options = glsl::CompilerOptions::default();
     assert_eq!(compiler_options.vertex.invert_y, false);
@@ -12,6 +13,7 @@ fn glsl_compiler_options_has_default() {
 }
 
 #[test]
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
 fn ast_compiles_to_glsl() {
     let mut ast = spirv::Ast::<glsl::Target>::parse(&spirv::Module::from_words(words_from_bytes(
         include_bytes!("shaders/simple.vert.spv"),
@@ -48,6 +50,7 @@ void main()
 }
 
 #[test]
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen_test::wasm_bindgen_test)]
 fn ast_compiles_all_versions_to_glsl() {
     use librashader_spirv_cross::glsl::Version::*;
 

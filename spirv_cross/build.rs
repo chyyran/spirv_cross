@@ -10,8 +10,13 @@ fn main() {
     // Prevent building SPIRV-Cross on wasm32 target
     let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH");
     if let Ok(arch) = target_arch {
-        if "wasm32" == arch {
-            return;
+        if "wasm32" == arch  {
+            let target_env = std::env::var("CARGO_CFG_TARGET_OS");
+            if let Ok(env) = target_env {
+                if "wasi" != env {
+                    return;
+                }
+            }
         }
     }
 

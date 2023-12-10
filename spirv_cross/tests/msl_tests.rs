@@ -1,3 +1,4 @@
+#![cfg(all(feature = "msl"))]
 use librashader_spirv_cross::{msl, spirv};
 
 use std::collections::BTreeMap;
