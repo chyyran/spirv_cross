@@ -10,6 +10,7 @@ use crate::{bindings};
 use js_sys::{global, Object, Reflect, Uint32Array, Uint8Array};
 use std::ffi::CStr;
 use wasm_bindgen::prelude::*;
+use crate::bindings::root;
 
 const U32_SIZE: u32 = std::mem::size_of::<u32>() as u32;
 
@@ -166,6 +167,13 @@ extern "C" {
 
     #[wasm_bindgen(js_namespace = sc_internal)]
     fn _sc_internal_free_pointer(pointer: u32) -> u32;
+
+    #[wasm_bindgen(js_namespace = sc_internal)]
+    fn _sc_internal_compiler_get_active_interface_variables(
+        compiler: u32,
+        ids: u32,
+        size: u32,
+    ) -> u32;
 }
 
 fn map_internal_result(result: u32) -> bindings::ScInternalResult {
@@ -793,4 +801,30 @@ pub fn sc_internal_free_pointer(
     pointer: *mut ::std::os::raw::c_void,
 ) -> bindings::ScInternalResult {
     map_internal_result(_sc_internal_free_pointer(pointer as u32))
+}
+
+pub fn sc_internal_compiler_get_active_interface_variables(
+    compiler: *const root::ScInternalCompilerBase,
+    ids: *mut *mut u32,
+    size: *mut usize,
+) -> bindings::ScInternalResult {
+    let module = emscripten::get_module();
+    unsafe {
+        let ids_ptr_to_ptr = module.allocate(U32_SIZE);
+        let size_ptr = module.allocate(U32_SIZE);
+
+        let result = map_internal_result(_sc_internal_compiler_get_active_interface_variables(
+            compiler as u32,
+            ids_ptr_to_ptr.as_offset(),
+            size_ptr.as_offset(),
+        ));
+
+        *ids = module.get_u32(ids_ptr_to_ptr) as *mut u32;
+        *size = module.get_u32(size_ptr) as usize;
+
+        module.free(size_ptr);
+        module.free(ids_ptr_to_ptr);
+
+        result
+    }
 }
