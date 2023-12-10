@@ -6,13 +6,14 @@ use std::ffi::{CStr, CString};
 use std::marker::PhantomData;
 use std::ptr;
 use std::u8;
+use crate::bindings::spirv_cross::SPIRType_BaseType;
 
 /// A MSL target.
 #[derive(Debug, Clone)]
 pub enum Target {}
 
 pub struct TargetData {
-    vertex_attribute_overrides: Vec<br::spirv_cross::MSLShaderInput>,
+    vertex_attribute_overrides: Vec<br::spirv_cross::MSLShaderInterfaceVariable>,
     resource_binding_overrides: Vec<br::spirv_cross::MSLResourceBinding>,
     const_samplers: Vec<br::ScMslConstSamplerMapping>,
 }
@@ -34,12 +35,12 @@ pub enum Format {
 }
 
 impl Format {
-    fn as_raw(&self) -> br::spirv_cross::MSLShaderInputFormat {
+    fn as_raw(&self) -> br::spirv_cross::MSLShaderVariableFormat {
         use self::Format::*;
         match self {
-            Other => br::spirv_cross::MSLShaderInputFormat_MSL_SHADER_INPUT_FORMAT_OTHER,
-            Uint8 => br::spirv_cross::MSLShaderInputFormat_MSL_SHADER_INPUT_FORMAT_UINT8,
-            Uint16 => br::spirv_cross::MSLShaderInputFormat_MSL_SHADER_INPUT_FORMAT_UINT16,
+            Other => br::spirv_cross::MSLShaderVariableFormat::MSL_SHADER_VARIABLE_FORMAT_OTHER,
+            Uint8 => br::spirv_cross::MSLShaderVariableFormat::MSL_SHADER_INPUT_FORMAT_UINT8,
+            Uint16 => br::spirv_cross::MSLShaderVariableFormat::MSL_SHADER_INPUT_FORMAT_UINT16,
         }
     }
 }
@@ -439,6 +440,7 @@ impl spirv::Compile<Target> for spirv::Ast<Target> {
             options.resource_binding_overrides.iter().map(|(loc, res)| {
                 br::spirv_cross::MSLResourceBinding {
                     stage: loc.stage.as_raw(),
+                    basetype: SPIRType_BaseType::Unknown,
                     desc_set: loc.desc_set,
                     binding: loc.binding,
                     msl_buffer: res.buffer_id,
@@ -452,11 +454,13 @@ impl spirv::Compile<Target> for spirv::Ast<Target> {
         self.compiler.target_data.vertex_attribute_overrides.clear();
         self.compiler.target_data.vertex_attribute_overrides.extend(
             options.vertex_attribute_overrides.iter().map(|(loc, vat)| {
-                br::spirv_cross::MSLShaderInput {
+                br::spirv_cross::MSLShaderInterfaceVariable {
                     location: loc.0,
+                    component: 0,
                     format: vat.format.as_raw(),
                     builtin: spirv::built_in_as_raw(vat.built_in),
                     vecsize: vat.vecsize,
+                    rate: 0,
                 }
             }),
         );

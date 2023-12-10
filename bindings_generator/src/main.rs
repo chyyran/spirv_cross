@@ -8,15 +8,15 @@ fn main() {
     bindgen::Builder::default()
         .header(
             out_path
-                .join("../spirv_cross/src/wrapper.hpp")
+                .join("spirv_cross/src/wrapper.hpp")
                 .to_str()
                 .unwrap(),
         )
         .clang_args(["-x", "c++", "-std=c++14"].iter())
         .enable_cxx_namespaces()
-        .whitelist_function("sc_internal.*")
-        .whitelist_type("spv::.*")
-        .whitelist_type("Sc.*")
+        .allowlist_function("sc_internal.*")
+        .allowlist_type("spv::.*")
+        .allowlist_type("Sc.*")
         .bitfield_enum(".*(Mask|Flags)")
         .rustified_enum("spv::BuiltIn")
         .rustified_enum("spv::Decoration")
@@ -27,6 +27,7 @@ fn main() {
         .rustified_enum("ScInternalResult")
         .rustified_enum("spirv_cross::SPIRType_BaseType")
         .rustified_enum("spirv_cross::MSLVertexFormat")
+        .rustified_enum("spirv_cross::MSLShaderVariableFormat")
         .opaque_type("std::.*")
         .clang_args(vec![
             "-DSPIRV_CROSS_WRAPPER_GLSL",
@@ -36,20 +37,20 @@ fn main() {
         .layout_tests(false)
         .generate()
         .expect("Unable to generate bindings")
-        .write_to_file(out_path.join("../spirv_cross/src/bindings_native.rs"))
+        .write_to_file(out_path.join("spirv_cross/src/bindings_native.rs"))
         .expect("Couldn't write bindings!");
     // For wasm targets, include all types, functions will be implemented manually
     bindgen::Builder::default()
         .header(
             out_path
-                .join("../spirv_cross/src/wrapper.hpp")
+                .join("spirv_cross/src/wrapper.hpp")
                 .to_str()
                 .unwrap(),
         )
         .clang_args(["-x", "c++", "-std=c++14"].iter())
         .enable_cxx_namespaces()
-        .whitelist_type("spv::.*")
-        .whitelist_type("Sc.*")
+        .allowlist_type("spv::.*")
+        .allowlist_type("Sc.*")
         .bitfield_enum(".*(Mask|Flags)")
         .rustified_enum("spv::BuiltIn")
         .rustified_enum("spv::Decoration")
@@ -59,6 +60,7 @@ fn main() {
         .rustified_enum("ScInternalResult")
         .rustified_enum("spirv_cross::SPIRType_BaseType")
         .rustified_enum("spirv_cross::MSLVertexFormat")
+        .rustified_enum("spirv_cross::MSLShaderVariableFormat")
         .opaque_type("std::.*")
         .clang_args(vec![
             "-DSPIRV_CROSS_WRAPPER_GLSL",
@@ -68,6 +70,6 @@ fn main() {
         .layout_tests(false)
         .generate()
         .expect("Unable to generate bindings")
-        .write_to_file(out_path.join("../spirv_cross/src/bindings_wasm.rs"))
+        .write_to_file(out_path.join("spirv_cross/src/bindings_wasm.rs"))
         .expect("Couldn't write bindings!");
 }
