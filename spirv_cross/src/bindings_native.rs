@@ -3015,6 +3015,29 @@ pub mod root {
     }
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslVertexAttributeRemap {
+        pub location: u32,
+        pub semantic: *mut ::std::os::raw::c_char,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslResourceBindingSpaceRegister {
+        pub register_space: u32,
+        pub register_binding: u32,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslResourceBinding {
+        pub stage: root::spv::ExecutionModel,
+        pub desc_set: u32,
+        pub binding: u32,
+        pub cbv: root::ScHlslResourceBindingSpaceRegister,
+        pub uav: root::ScHlslResourceBindingSpaceRegister,
+        pub srv: root::ScHlslResourceBindingSpaceRegister,
+        pub sampler: root::ScHlslResourceBindingSpaceRegister,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
     pub struct ScHlslCompilerOptions {
         pub shader_model: i32,
         pub point_size_compat: bool,
@@ -3023,6 +3046,7 @@ pub mod root {
         pub vertex_invert_y: bool,
         pub force_storage_buffer_as_uav: bool,
         pub nonwritable_uav_texture_as_srv: bool,
+        pub flatten_matrix_vertex_input_semantics: bool,
         pub force_zero_initialized_variables: bool,
     }
     #[repr(C)]
@@ -3144,6 +3168,18 @@ pub mod root {
             compiler: *const root::ScInternalCompilerHlsl,
             constants: *const root::ScHlslRootConstant,
             count: usize,
+        ) -> root::ScInternalResult;
+    }
+    extern "C" {
+        pub fn sc_internal_compiler_hlsl_add_resource_binding(
+            compiler: *const root::ScInternalCompilerHlsl,
+            binding_override: root::ScHlslResourceBinding,
+        ) -> root::ScInternalResult;
+    }
+    extern "C" {
+        pub fn sc_internal_compiler_hlsl_add_vertex_attribute_remap(
+            compiler: *const root::ScInternalCompilerHlsl,
+            binding_override: root::ScHlslVertexAttributeRemap,
         ) -> root::ScInternalResult;
     }
     #[repr(C)]

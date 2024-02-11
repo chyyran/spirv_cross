@@ -2919,6 +2919,29 @@ pub mod root {
     }
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslVertexAttributeRemap {
+        pub location: u32,
+        pub semantic: *mut ::std::os::raw::c_char,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslResourceBindingSpaceRegister {
+        pub register_space: u32,
+        pub register_binding: u32,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
+    pub struct ScHlslResourceBinding {
+        pub stage: root::spv::ExecutionModel,
+        pub desc_set: u32,
+        pub binding: u32,
+        pub cbv: root::ScHlslResourceBindingSpaceRegister,
+        pub uav: root::ScHlslResourceBindingSpaceRegister,
+        pub srv: root::ScHlslResourceBindingSpaceRegister,
+        pub sampler: root::ScHlslResourceBindingSpaceRegister,
+    }
+    #[repr(C)]
+    #[derive(Debug, Copy, Clone)]
     pub struct ScHlslCompilerOptions {
         pub shader_model: i32,
         pub point_size_compat: bool,
@@ -2927,6 +2950,7 @@ pub mod root {
         pub vertex_invert_y: bool,
         pub force_storage_buffer_as_uav: bool,
         pub nonwritable_uav_texture_as_srv: bool,
+        pub flatten_matrix_vertex_input_semantics: bool,
         pub force_zero_initialized_variables: bool,
     }
     #[repr(C)]
