@@ -168,6 +168,7 @@ extern "C"
                 msl_options.pad_fragment_output_components = options->pad_fragment_output_components;
                 msl_options.force_native_arrays = options->force_native_arrays;
                 msl_options.force_active_argument_buffer_resources = options->force_active_argument_buffer_resources;
+                msl_options.pad_argument_buffer_resources = options->pad_argument_buffer_resources;
                 compiler_msl->set_msl_options(msl_options);
             } while (0);)
     }

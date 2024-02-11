@@ -410,6 +410,8 @@ pub struct ImageType {
     pub format: ImageFormat,
 }
 
+pub use crate::bindings::root::spirv_cross::SPIRType_BaseType as SPIRType;
+
 #[derive(Debug, Clone)]
 #[non_exhaustive]
 pub enum Type {
@@ -513,6 +515,38 @@ pub enum Type {
     AccelerationStructure,
     RayQuery,
     Interpolant,
+}
+
+impl Type {
+    // Get the SPIR type 
+    pub fn get_spir_type(&self) -> SPIRType {
+        match self {
+            Type::Unknown => SPIRType::Unknown,
+            Type::Void => SPIRType::Void,
+            Type::Boolean { .. } => SPIRType::Boolean,
+            Type::Char { .. } => SPIRType::Char,
+            Type::Int { .. } => SPIRType::Int,
+            Type::UInt { .. } => SPIRType::UInt,
+            Type::Int64 { .. } => SPIRType::Int64,
+            Type::UInt64 { .. } => SPIRType::UInt64,
+            Type::AtomicCounter { .. } => SPIRType::AtomicCounter,
+            Type::Half { .. } => SPIRType::Half,
+            Type::Float { .. } => SPIRType::Float,
+            Type::Double { .. } => SPIRType::Double,
+            Type::Struct { .. } => SPIRType::Struct,
+            Type::Image { .. } => SPIRType::Image,
+            Type::SampledImage { .. } => SPIRType::SampledImage,
+            Type::Sampler { .. } => SPIRType::Sampler,
+            Type::SByte { .. } => SPIRType::SByte,
+            Type::UByte { .. } => SPIRType::UByte,
+            Type::Short { .. } => SPIRType::Short,
+            Type::UShort { .. } => SPIRType::UShort,
+            Type::ControlPointArray => SPIRType::ControlPointArray,
+            Type::AccelerationStructure => SPIRType::AccelerationStructure,
+            Type::RayQuery => SPIRType::RayQuery,
+            Type::Interpolant => SPIRType::Interpolant,
+        }
+    }
 }
 
 /// A SPIR-V shader module.

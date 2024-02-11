@@ -83,6 +83,7 @@ extern "C"
         bool force_native_arrays;
         bool force_zero_initialized_variables;
         bool force_active_argument_buffer_resources;
+        bool pad_argument_buffer_resources;
     } ScMslCompilerOptions;
 
     typedef struct ScGlslCompilerOptions

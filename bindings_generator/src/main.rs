@@ -27,6 +27,7 @@ fn main() {
         .rustified_enum("ScInternalResult")
         .rustified_enum("spirv_cross::SPIRType_BaseType")
         .rustified_enum("spirv_cross::MSLVertexFormat")
+        .rustified_enum("spirv_cross::MSLShaderVariableRate")
         .rustified_enum("spirv_cross::MSLShaderVariableFormat")
         .opaque_type("std::.*")
         .clang_args(vec![

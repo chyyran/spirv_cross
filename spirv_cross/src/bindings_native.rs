@@ -712,6 +712,8 @@ pub mod root {
             DecorationMaxByteOffsetId = 47,
             DecorationNoSignedWrap = 4469,
             DecorationNoUnsignedWrap = 4470,
+            DecorationWeightTextureQCOM = 4487,
+            DecorationBlockMatchTextureQCOM = 4488,
             DecorationExplicitInterpAMD = 4999,
             DecorationOverrideCoverageNV = 5248,
             DecorationPassthroughNV = 5250,
@@ -1650,6 +1652,9 @@ pub mod root {
         pub const Capability_CapabilityRayTraversalPrimitiveCullingKHR: root::spv::Capability =
             4478;
         pub const Capability_CapabilityRayTracingKHR: root::spv::Capability = 4479;
+        pub const Capability_CapabilityTextureSampleWeightedQCOM: root::spv::Capability = 4484;
+        pub const Capability_CapabilityTextureBoxFilterQCOM: root::spv::Capability = 4485;
+        pub const Capability_CapabilityTextureBlockMatchQCOM: root::spv::Capability = 4486;
         pub const Capability_CapabilityFloat16ImageAMD: root::spv::Capability = 5008;
         pub const Capability_CapabilityImageGatherBiasLodAMD: root::spv::Capability = 5009;
         pub const Capability_CapabilityFragmentMaskAMD: root::spv::Capability = 5010;
@@ -2376,6 +2381,10 @@ pub mod root {
         pub const Op_OpRayQueryConfirmIntersectionKHR: root::spv::Op = 4476;
         pub const Op_OpRayQueryProceedKHR: root::spv::Op = 4477;
         pub const Op_OpRayQueryGetIntersectionTypeKHR: root::spv::Op = 4479;
+        pub const Op_OpImageSampleWeightedQCOM: root::spv::Op = 4480;
+        pub const Op_OpImageBoxFilterQCOM: root::spv::Op = 4481;
+        pub const Op_OpImageBlockMatchSSDQCOM: root::spv::Op = 4482;
+        pub const Op_OpImageBlockMatchSADQCOM: root::spv::Op = 4483;
         pub const Op_OpGroupIAddNonUniformAMD: root::spv::Op = 5000;
         pub const Op_OpGroupFAddNonUniformAMD: root::spv::Op = 5001;
         pub const Op_OpGroupFMinNonUniformAMD: root::spv::Op = 5002;
@@ -2788,15 +2797,14 @@ pub mod root {
             MSL_SHADER_VARIABLE_FORMAT_ANY32 = 4,
             MSL_SHADER_VARIABLE_FORMAT_INT_MAX = 2147483647,
         }
-        pub const MSLShaderVariableRate_MSL_SHADER_VARIABLE_RATE_PER_VERTEX:
-            root::spirv_cross::MSLShaderVariableRate = 0;
-        pub const MSLShaderVariableRate_MSL_SHADER_VARIABLE_RATE_PER_PRIMITIVE:
-            root::spirv_cross::MSLShaderVariableRate = 1;
-        pub const MSLShaderVariableRate_MSL_SHADER_VARIABLE_RATE_PER_PATCH:
-            root::spirv_cross::MSLShaderVariableRate = 2;
-        pub const MSLShaderVariableRate_MSL_SHADER_VARIABLE_RATE_INT_MAX:
-            root::spirv_cross::MSLShaderVariableRate = 2147483647;
-        pub type MSLShaderVariableRate = ::std::os::raw::c_int;
+        #[repr(i32)]
+        #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+        pub enum MSLShaderVariableRate {
+            MSL_SHADER_VARIABLE_RATE_PER_VERTEX = 0,
+            MSL_SHADER_VARIABLE_RATE_PER_PRIMITIVE = 1,
+            MSL_SHADER_VARIABLE_RATE_PER_PATCH = 2,
+            MSL_SHADER_VARIABLE_RATE_INT_MAX = 2147483647,
+        }
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct MSLShaderInterfaceVariable {
@@ -3040,6 +3048,7 @@ pub mod root {
         pub force_native_arrays: bool,
         pub force_zero_initialized_variables: bool,
         pub force_active_argument_buffer_resources: bool,
+        pub pad_argument_buffer_resources: bool,
     }
     #[repr(C)]
     #[derive(Debug, Copy, Clone)]

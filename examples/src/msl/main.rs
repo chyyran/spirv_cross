@@ -19,20 +19,22 @@ fn main() {
             binding: 0,
         },
         msl::ResourceBinding {
-            buffer_id: 5,
-            texture_id: 6,
-            sampler_id: 7,
+            buffer_id: 4,
+            texture_id: 0,
+            sampler_id: 0,
+            base_type: None,
             count: 0,
         },
     );
 
     compiler_options.vertex_attribute_overrides.insert(
-        msl::VertexAttributeLocation(1),
+        msl::VertexAttributeLocation { location: 1, component: 0 },
         msl::VertexAttribute {
             buffer_id: 1,
             format: msl::Format::Other,
             built_in: None,
             vecsize: 0,
+            rate: msl::Rate::PerVertex,
         },
     );
 

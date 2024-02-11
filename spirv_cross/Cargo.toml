@@ -1,8 +1,8 @@
 [package]
 name = "librashader-spirv-cross"
-version = "0.23.5"
+version = "0.24.0"
 authors = ["Joshua Groves <josh@joshgroves.com>", "Ronny Chan <ronny@ronnychan.ca>"]
-description = "Temporary spirv_cross fork for librashader purposes"
+description = "spirv_cross fork maintained for librashader"
 license = "MIT/Apache-2.0"
 homepage = "https://github.com/chyyran/spirv_cross"
 repository = "https://github.com/chyyran/spirv_cross"

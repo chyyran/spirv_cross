@@ -7,6 +7,7 @@ use std::marker::PhantomData;
 use std::ptr;
 use std::u8;
 use crate::bindings::spirv_cross::SPIRType_BaseType;
+use crate::msl::Rate::PerVertex;
 
 /// A MSL target.
 #[derive(Debug, Clone)]
@@ -24,7 +25,7 @@ impl spirv::Target for Target {
 
 /// Location of a vertex attribute to override
 #[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
-pub struct VertexAttributeLocation(pub u32);
+pub struct VertexAttributeLocation { pub location: u32, pub component: u32 }
 
 /// Format of the vertex attribute
 #[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
@@ -33,6 +34,15 @@ pub enum Format {
     Uint8,
     Uint16,
 }
+
+// Rate of the vertex attribute
+#[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+pub enum Rate {
+    PerVertex,
+    PerPrimitive,
+    PerPatch,
+}
+
 
 impl Format {
     fn as_raw(&self) -> br::spirv_cross::MSLShaderVariableFormat {
@@ -45,6 +55,16 @@ impl Format {
     }
 }
 
+impl Rate {
+    fn as_raw(&self) -> br::spirv_cross::MSLShaderVariableRate {
+        use self::Rate::*;
+        match self {
+            PerVertex => br::spirv_cross::MSLShaderVariableRate::MSL_SHADER_VARIABLE_RATE_PER_VERTEX,
+            PerPrimitive => br::spirv_cross::MSLShaderVariableRate::MSL_SHADER_VARIABLE_RATE_PER_PATCH,
+            PerPatch=> br::spirv_cross::MSLShaderVariableRate::MSL_SHADER_VARIABLE_RATE_PER_PRIMITIVE,
+        }
+    }
+}
 /// Vertex attribute description for overriding
 #[derive(Debug, Clone, Hash, Eq, PartialEq)]
 pub struct VertexAttribute {
@@ -52,6 +72,7 @@ pub struct VertexAttribute {
     pub format: Format,
     pub built_in: Option<spirv::BuiltIn>,
     pub vecsize: u32,
+    pub rate: Rate
 }
 
 /// Location of a resource binding to override
@@ -68,6 +89,7 @@ pub struct ResourceBinding {
     pub buffer_id: u32,
     pub texture_id: u32,
     pub sampler_id: u32,
+    pub base_type: Option<spirv::SPIRType>,
     pub count: u32,
 }
 
@@ -315,6 +337,15 @@ pub struct CompilerOptions {
     pub tessellation_domain_origin_lower_left: bool,
     /// Whether to enable use of argument buffers (only compatible with MSL 2.0).
     pub enable_argument_buffers: bool,
+    // Aligns each resource in an argument buffer to its assigned index value, id(N),
+    // by adding synthetic padding members in the argument buffer struct for any resources
+    // in the argument buffer that are not defined and used by the shader. This allows
+    // the shader to index into the correct argument in a descriptor set argument buffer
+    // that is shared across shaders, where not all resources in the argument buffer are
+    // defined in each shader. For this to work, an ResourceBinding must be provided for
+    // all descriptors in any descriptor set held in an argument buffer in the shader, and
+    // that ResourceBinding must have the basetype and count members populated correctly.
+    pub pad_argument_buffer_resources: bool,
     /// Whether to pad fragment output to have at least the number of components as the render pass.
     pub pad_fragment_output_components: bool,
     /// MSL resource bindings overrides.
@@ -352,6 +383,7 @@ impl Default for CompilerOptions {
             swizzle_texture_samples: false,
             tessellation_domain_origin_lower_left: false,
             enable_argument_buffers: false,
+            pad_argument_buffer_resources: false,
             pad_fragment_output_components: false,
             resource_binding_overrides: Default::default(),
             vertex_attribute_overrides: Default::default(),
@@ -427,6 +459,7 @@ impl spirv::Compile<Target> for spirv::Ast<Target> {
             force_native_arrays: options.force_native_arrays,
             force_zero_initialized_variables: options.force_zero_initialized_variables,
             force_active_argument_buffer_resources: options.force_active_argument_buffer_resources,
+            pad_argument_buffer_resources: options.pad_argument_buffer_resources,
         };
         unsafe {
             check!(br::sc_internal_compiler_msl_set_options(
@@ -440,7 +473,7 @@ impl spirv::Compile<Target> for spirv::Ast<Target> {
             options.resource_binding_overrides.iter().map(|(loc, res)| {
                 br::spirv_cross::MSLResourceBinding {
                     stage: loc.stage.as_raw(),
-                    basetype: SPIRType_BaseType::Unknown,
+                    basetype: res.base_type.unwrap_or(SPIRType_BaseType::Unknown),
                     desc_set: loc.desc_set,
                     binding: loc.binding,
                     msl_buffer: res.buffer_id,
@@ -455,12 +488,12 @@ impl spirv::Compile<Target> for spirv::Ast<Target> {
         self.compiler.target_data.vertex_attribute_overrides.extend(
             options.vertex_attribute_overrides.iter().map(|(loc, vat)| {
                 br::spirv_cross::MSLShaderInterfaceVariable {
-                    location: loc.0,
-                    component: 0,
+                    location: loc.component,
+                    component: loc.location,
                     format: vat.format.as_raw(),
                     builtin: spirv::built_in_as_raw(vat.built_in),
                     vecsize: vat.vecsize,
-                    rate: 0,
+                    rate: vat.rate.as_raw(),
                 }
             }),
         );
@@ -555,4 +588,8 @@ impl spirv::Ast<Target> {
 }
 
 // TODO: Generate with bindgen
+pub const PUSH_CONSTANT_DESCRIPTOR_SET: u32 = !0;
+pub const PUSH_CONSTANT_BINDING: u32 = 0;
+pub const SWIZZLE_BUFFER_BINDING: u32 = !1;
+pub const BUFFER_SIZE_BUFFER_BINDING: u32 = !2;
 pub const ARGUMENT_BUFFER_BINDING: u32 = !3;
