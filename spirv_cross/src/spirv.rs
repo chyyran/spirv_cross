@@ -337,7 +337,10 @@ pub struct ShaderResources {
     pub storage_images: Vec<Resource>,
     pub sampled_images: Vec<Resource>,
     pub atomic_counters: Vec<Resource>,
+    pub acceleration_structures: Vec<Resource>,
+    pub gl_plain_uniforms: Vec<Resource>,
     pub push_constant_buffers: Vec<Resource>,
+    pub shader_record_buffers: Vec<Resource>,
     pub separate_images: Vec<Resource>,
     pub separate_samplers: Vec<Resource>,
 }
