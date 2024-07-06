@@ -415,6 +415,7 @@ extern "C"
                 fill_resource_array(&shader_resources->push_constant_buffers, sc_resources.push_constant_buffers);
                 fill_resource_array(&shader_resources->separate_images, sc_resources.separate_images);
                 fill_resource_array(&shader_resources->separate_samplers, sc_resources.separate_samplers);
+                fill_resource_array(&shader_resources->shader_record_buffers, sc_resources.shader_record_buffers);
             } while (0);)
     }
 
