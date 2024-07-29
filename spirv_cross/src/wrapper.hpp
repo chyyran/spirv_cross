@@ -156,7 +156,10 @@ extern "C"
         ScResourceArray storage_images;
         ScResourceArray sampled_images;
         ScResourceArray atomic_counters;
+        ScResourceArray acceleration_structures; 
+        ScResourceArray gl_plain_uniforms; 
         ScResourceArray push_constant_buffers;
+        ScResourceArray shader_record_buffers;
         ScResourceArray separate_images;
         ScResourceArray separate_samplers;
     } ScShaderResources;

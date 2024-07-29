@@ -669,8 +669,11 @@ impl<TTargetData> Compiler<TTargetData> {
             let storage_images = fill_resources(&shader_resources_raw.storage_images)?;
             let sampled_images = fill_resources(&shader_resources_raw.sampled_images)?;
             let atomic_counters = fill_resources(&shader_resources_raw.atomic_counters)?;
+            let acceleration_structures = fill_resources(&shader_resources_raw.acceleration_structures)?;
+            let gl_plain_uniforms = fill_resources(&shader_resources_raw.gl_plain_uniforms)?;
             let push_constant_buffers =
                 fill_resources(&shader_resources_raw.push_constant_buffers)?;
+            let shader_record_buffers = fill_resources(&shader_resources_raw.shader_record_buffers)?;
             let separate_images = fill_resources(&shader_resources_raw.separate_images)?;
             let separate_samplers = fill_resources(&shader_resources_raw.separate_samplers)?;
 
@@ -686,6 +689,9 @@ impl<TTargetData> Compiler<TTargetData> {
                 push_constant_buffers,
                 separate_images,
                 separate_samplers,
+                acceleration_structures,
+                gl_plain_uniforms,
+                shader_record_buffers,
             })
         }
     }
