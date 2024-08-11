@@ -17,7 +17,7 @@ pub mod root {
         pub const SourceLanguage_SourceLanguageCPP_for_OpenCL: root::spv::SourceLanguage = 6;
         pub const SourceLanguage_SourceLanguageSYCL: root::spv::SourceLanguage = 7;
         pub const SourceLanguage_SourceLanguageMax: root::spv::SourceLanguage = 2147483647;
-        pub type SourceLanguage = ::std::os::raw::c_uint;
+        pub type SourceLanguage = ::std::os::raw::c_int;
         impl root::spv::ExecutionModel {
             pub const ExecutionModelRayGenerationNV: root::spv::ExecutionModel =
                 ExecutionModel::ExecutionModelRayGenerationKHR;
@@ -42,7 +42,7 @@ pub mod root {
             pub const ExecutionModelCallableNV: root::spv::ExecutionModel =
                 ExecutionModel::ExecutionModelCallableKHR;
         }
-        #[repr(u32)]
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum ExecutionModel {
             ExecutionModelVertex = 0,
@@ -72,14 +72,14 @@ pub mod root {
         pub const AddressingModel_AddressingModelPhysicalStorageBuffer64EXT:
             root::spv::AddressingModel = 5348;
         pub const AddressingModel_AddressingModelMax: root::spv::AddressingModel = 2147483647;
-        pub type AddressingModel = ::std::os::raw::c_uint;
+        pub type AddressingModel = ::std::os::raw::c_int;
         pub const MemoryModel_MemoryModelSimple: root::spv::MemoryModel = 0;
         pub const MemoryModel_MemoryModelGLSL450: root::spv::MemoryModel = 1;
         pub const MemoryModel_MemoryModelOpenCL: root::spv::MemoryModel = 2;
         pub const MemoryModel_MemoryModelVulkan: root::spv::MemoryModel = 3;
         pub const MemoryModel_MemoryModelVulkanKHR: root::spv::MemoryModel = 3;
         pub const MemoryModel_MemoryModelMax: root::spv::MemoryModel = 2147483647;
-        pub type MemoryModel = ::std::os::raw::c_uint;
+        pub type MemoryModel = ::std::os::raw::c_int;
         pub const ExecutionMode_ExecutionModeInvocations: root::spv::ExecutionMode = 0;
         pub const ExecutionMode_ExecutionModeSpacingEqual: root::spv::ExecutionMode = 1;
         pub const ExecutionMode_ExecutionModeSpacingFractionalEven: root::spv::ExecutionMode = 2;
@@ -181,7 +181,7 @@ pub mod root {
         pub const ExecutionMode_ExecutionModeNamedBarrierCountINTEL: root::spv::ExecutionMode =
             6417;
         pub const ExecutionMode_ExecutionModeMax: root::spv::ExecutionMode = 2147483647;
-        pub type ExecutionMode = ::std::os::raw::c_uint;
+        pub type ExecutionMode = ::std::os::raw::c_int;
         pub const StorageClass_StorageClassUniformConstant: root::spv::StorageClass = 0;
         pub const StorageClass_StorageClassInput: root::spv::StorageClass = 1;
         pub const StorageClass_StorageClassUniform: root::spv::StorageClass = 2;
@@ -214,8 +214,8 @@ pub mod root {
         pub const StorageClass_StorageClassDeviceOnlyINTEL: root::spv::StorageClass = 5936;
         pub const StorageClass_StorageClassHostOnlyINTEL: root::spv::StorageClass = 5937;
         pub const StorageClass_StorageClassMax: root::spv::StorageClass = 2147483647;
-        pub type StorageClass = ::std::os::raw::c_uint;
-        #[repr(u32)]
+        pub type StorageClass = ::std::os::raw::c_int;
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum Dim {
             Dim1D = 0,
@@ -239,12 +239,12 @@ pub mod root {
             root::spv::SamplerAddressingMode = 4;
         pub const SamplerAddressingMode_SamplerAddressingModeMax: root::spv::SamplerAddressingMode =
             2147483647;
-        pub type SamplerAddressingMode = ::std::os::raw::c_uint;
+        pub type SamplerAddressingMode = ::std::os::raw::c_int;
         pub const SamplerFilterMode_SamplerFilterModeNearest: root::spv::SamplerFilterMode = 0;
         pub const SamplerFilterMode_SamplerFilterModeLinear: root::spv::SamplerFilterMode = 1;
         pub const SamplerFilterMode_SamplerFilterModeMax: root::spv::SamplerFilterMode = 2147483647;
-        pub type SamplerFilterMode = ::std::os::raw::c_uint;
-        #[repr(u32)]
+        pub type SamplerFilterMode = ::std::os::raw::c_int;
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum ImageFormat {
             ImageFormatUnknown = 0,
@@ -313,7 +313,7 @@ pub mod root {
         pub const ImageChannelOrder_ImageChannelOrdersBGRA: root::spv::ImageChannelOrder = 18;
         pub const ImageChannelOrder_ImageChannelOrderABGR: root::spv::ImageChannelOrder = 19;
         pub const ImageChannelOrder_ImageChannelOrderMax: root::spv::ImageChannelOrder = 2147483647;
-        pub type ImageChannelOrder = ::std::os::raw::c_uint;
+        pub type ImageChannelOrder = ::std::os::raw::c_int;
         pub const ImageChannelDataType_ImageChannelDataTypeSnormInt8:
             root::spv::ImageChannelDataType = 0;
         pub const ImageChannelDataType_ImageChannelDataTypeSnormInt16:
@@ -350,7 +350,7 @@ pub mod root {
             root::spv::ImageChannelDataType = 16;
         pub const ImageChannelDataType_ImageChannelDataTypeMax: root::spv::ImageChannelDataType =
             2147483647;
-        pub type ImageChannelDataType = ::std::os::raw::c_uint;
+        pub type ImageChannelDataType = ::std::os::raw::c_int;
         pub const ImageOperandsShift_ImageOperandsBiasShift: root::spv::ImageOperandsShift = 0;
         pub const ImageOperandsShift_ImageOperandsLodShift: root::spv::ImageOperandsShift = 1;
         pub const ImageOperandsShift_ImageOperandsGradShift: root::spv::ImageOperandsShift = 2;
@@ -385,7 +385,7 @@ pub mod root {
             14;
         pub const ImageOperandsShift_ImageOperandsOffsetsShift: root::spv::ImageOperandsShift = 16;
         pub const ImageOperandsShift_ImageOperandsMax: root::spv::ImageOperandsShift = 2147483647;
-        pub type ImageOperandsShift = ::std::os::raw::c_uint;
+        pub type ImageOperandsShift = ::std::os::raw::c_int;
         impl ImageOperandsMask {
             pub const ImageOperandsMaskNone: root::spv::ImageOperandsMask =
                 root::spv::ImageOperandsMask(0);
@@ -498,7 +498,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct ImageOperandsMask(pub ::std::os::raw::c_uint);
+        pub struct ImageOperandsMask(pub ::std::os::raw::c_int);
         pub const FPFastMathModeShift_FPFastMathModeNotNaNShift: root::spv::FPFastMathModeShift = 0;
         pub const FPFastMathModeShift_FPFastMathModeNotInfShift: root::spv::FPFastMathModeShift = 1;
         pub const FPFastMathModeShift_FPFastMathModeNSZShift: root::spv::FPFastMathModeShift = 2;
@@ -511,7 +511,7 @@ pub mod root {
             root::spv::FPFastMathModeShift = 17;
         pub const FPFastMathModeShift_FPFastMathModeMax: root::spv::FPFastMathModeShift =
             2147483647;
-        pub type FPFastMathModeShift = ::std::os::raw::c_uint;
+        pub type FPFastMathModeShift = ::std::os::raw::c_int;
         impl FPFastMathModeMask {
             pub const FPFastMathModeMaskNone: root::spv::FPFastMathModeMask =
                 root::spv::FPFastMathModeMask(0);
@@ -572,23 +572,23 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct FPFastMathModeMask(pub ::std::os::raw::c_uint);
+        pub struct FPFastMathModeMask(pub ::std::os::raw::c_int);
         pub const FPRoundingMode_FPRoundingModeRTE: root::spv::FPRoundingMode = 0;
         pub const FPRoundingMode_FPRoundingModeRTZ: root::spv::FPRoundingMode = 1;
         pub const FPRoundingMode_FPRoundingModeRTP: root::spv::FPRoundingMode = 2;
         pub const FPRoundingMode_FPRoundingModeRTN: root::spv::FPRoundingMode = 3;
         pub const FPRoundingMode_FPRoundingModeMax: root::spv::FPRoundingMode = 2147483647;
-        pub type FPRoundingMode = ::std::os::raw::c_uint;
+        pub type FPRoundingMode = ::std::os::raw::c_int;
         pub const LinkageType_LinkageTypeExport: root::spv::LinkageType = 0;
         pub const LinkageType_LinkageTypeImport: root::spv::LinkageType = 1;
         pub const LinkageType_LinkageTypeLinkOnceODR: root::spv::LinkageType = 2;
         pub const LinkageType_LinkageTypeMax: root::spv::LinkageType = 2147483647;
-        pub type LinkageType = ::std::os::raw::c_uint;
+        pub type LinkageType = ::std::os::raw::c_int;
         pub const AccessQualifier_AccessQualifierReadOnly: root::spv::AccessQualifier = 0;
         pub const AccessQualifier_AccessQualifierWriteOnly: root::spv::AccessQualifier = 1;
         pub const AccessQualifier_AccessQualifierReadWrite: root::spv::AccessQualifier = 2;
         pub const AccessQualifier_AccessQualifierMax: root::spv::AccessQualifier = 2147483647;
-        pub type AccessQualifier = ::std::os::raw::c_uint;
+        pub type AccessQualifier = ::std::os::raw::c_int;
         pub const FunctionParameterAttribute_FunctionParameterAttributeZext:
             root::spv::FunctionParameterAttribute = 0;
         pub const FunctionParameterAttribute_FunctionParameterAttributeSext:
@@ -607,7 +607,7 @@ pub mod root {
             root::spv::FunctionParameterAttribute = 7;
         pub const FunctionParameterAttribute_FunctionParameterAttributeMax:
             root::spv::FunctionParameterAttribute = 2147483647;
-        pub type FunctionParameterAttribute = ::std::os::raw::c_uint;
+        pub type FunctionParameterAttribute = ::std::os::raw::c_int;
         impl root::spv::Decoration {
             pub const DecorationPerPrimitiveNV: root::spv::Decoration =
                 Decoration::DecorationPerPrimitiveEXT;
@@ -636,7 +636,7 @@ pub mod root {
             pub const DecorationUserSemantic: root::spv::Decoration =
                 Decoration::DecorationHlslSemanticGOOGLE;
         }
-        #[repr(u32)]
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum Decoration {
             DecorationRelaxedPrecision = 0,
@@ -822,7 +822,7 @@ pub mod root {
             pub const BuiltInIncomingRayFlagsNV: root::spv::BuiltIn =
                 BuiltIn::BuiltInIncomingRayFlagsKHR;
         }
-        #[repr(u32)]
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum BuiltIn {
             BuiltInPosition = 0,
@@ -937,7 +937,7 @@ pub mod root {
             root::spv::SelectionControlShift = 1;
         pub const SelectionControlShift_SelectionControlMax: root::spv::SelectionControlShift =
             2147483647;
-        pub type SelectionControlShift = ::std::os::raw::c_uint;
+        pub type SelectionControlShift = ::std::os::raw::c_int;
         impl SelectionControlMask {
             pub const SelectionControlMaskNone: root::spv::SelectionControlMask =
                 root::spv::SelectionControlMask(0);
@@ -978,7 +978,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct SelectionControlMask(pub ::std::os::raw::c_uint);
+        pub struct SelectionControlMask(pub ::std::os::raw::c_int);
         pub const LoopControlShift_LoopControlUnrollShift: root::spv::LoopControlShift = 0;
         pub const LoopControlShift_LoopControlDontUnrollShift: root::spv::LoopControlShift = 1;
         pub const LoopControlShift_LoopControlDependencyInfiniteShift: root::spv::LoopControlShift =
@@ -1007,7 +1007,7 @@ pub mod root {
             root::spv::LoopControlShift = 22;
         pub const LoopControlShift_LoopControlNoFusionINTELShift: root::spv::LoopControlShift = 23;
         pub const LoopControlShift_LoopControlMax: root::spv::LoopControlShift = 2147483647;
-        pub type LoopControlShift = ::std::os::raw::c_uint;
+        pub type LoopControlShift = ::std::os::raw::c_int;
         impl LoopControlMask {
             pub const LoopControlMaskNone: root::spv::LoopControlMask =
                 root::spv::LoopControlMask(0);
@@ -1108,7 +1108,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct LoopControlMask(pub ::std::os::raw::c_uint);
+        pub struct LoopControlMask(pub ::std::os::raw::c_int);
         pub const FunctionControlShift_FunctionControlInlineShift: root::spv::FunctionControlShift =
             0;
         pub const FunctionControlShift_FunctionControlDontInlineShift:
@@ -1121,7 +1121,7 @@ pub mod root {
             root::spv::FunctionControlShift = 16;
         pub const FunctionControlShift_FunctionControlMax: root::spv::FunctionControlShift =
             2147483647;
-        pub type FunctionControlShift = ::std::os::raw::c_uint;
+        pub type FunctionControlShift = ::std::os::raw::c_int;
         impl FunctionControlMask {
             pub const FunctionControlMaskNone: root::spv::FunctionControlMask =
                 root::spv::FunctionControlMask(0);
@@ -1174,7 +1174,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct FunctionControlMask(pub ::std::os::raw::c_uint);
+        pub struct FunctionControlMask(pub ::std::os::raw::c_int);
         pub const MemorySemanticsShift_MemorySemanticsAcquireShift:
             root::spv::MemorySemanticsShift = 1;
         pub const MemorySemanticsShift_MemorySemanticsReleaseShift:
@@ -1211,7 +1211,7 @@ pub mod root {
             root::spv::MemorySemanticsShift = 15;
         pub const MemorySemanticsShift_MemorySemanticsMax: root::spv::MemorySemanticsShift =
             2147483647;
-        pub type MemorySemanticsShift = ::std::os::raw::c_uint;
+        pub type MemorySemanticsShift = ::std::os::raw::c_int;
         impl MemorySemanticsMask {
             pub const MemorySemanticsMaskNone: root::spv::MemorySemanticsMask =
                 root::spv::MemorySemanticsMask(0);
@@ -1312,7 +1312,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct MemorySemanticsMask(pub ::std::os::raw::c_uint);
+        pub struct MemorySemanticsMask(pub ::std::os::raw::c_int);
         pub const MemoryAccessShift_MemoryAccessVolatileShift: root::spv::MemoryAccessShift = 0;
         pub const MemoryAccessShift_MemoryAccessAlignedShift: root::spv::MemoryAccessShift = 1;
         pub const MemoryAccessShift_MemoryAccessNontemporalShift: root::spv::MemoryAccessShift = 2;
@@ -1333,7 +1333,7 @@ pub mod root {
         pub const MemoryAccessShift_MemoryAccessNoAliasINTELMaskShift:
             root::spv::MemoryAccessShift = 17;
         pub const MemoryAccessShift_MemoryAccessMax: root::spv::MemoryAccessShift = 2147483647;
-        pub type MemoryAccessShift = ::std::os::raw::c_uint;
+        pub type MemoryAccessShift = ::std::os::raw::c_int;
         impl MemoryAccessMask {
             pub const MemoryAccessMaskNone: root::spv::MemoryAccessMask =
                 root::spv::MemoryAccessMask(0);
@@ -1410,7 +1410,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct MemoryAccessMask(pub ::std::os::raw::c_uint);
+        pub struct MemoryAccessMask(pub ::std::os::raw::c_int);
         pub const Scope_ScopeCrossDevice: root::spv::Scope = 0;
         pub const Scope_ScopeDevice: root::spv::Scope = 1;
         pub const Scope_ScopeWorkgroup: root::spv::Scope = 2;
@@ -1420,7 +1420,7 @@ pub mod root {
         pub const Scope_ScopeQueueFamilyKHR: root::spv::Scope = 5;
         pub const Scope_ScopeShaderCallKHR: root::spv::Scope = 6;
         pub const Scope_ScopeMax: root::spv::Scope = 2147483647;
-        pub type Scope = ::std::os::raw::c_uint;
+        pub type Scope = ::std::os::raw::c_int;
         pub const GroupOperation_GroupOperationReduce: root::spv::GroupOperation = 0;
         pub const GroupOperation_GroupOperationInclusiveScan: root::spv::GroupOperation = 1;
         pub const GroupOperation_GroupOperationExclusiveScan: root::spv::GroupOperation = 2;
@@ -1431,7 +1431,7 @@ pub mod root {
         pub const GroupOperation_GroupOperationPartitionedExclusiveScanNV:
             root::spv::GroupOperation = 8;
         pub const GroupOperation_GroupOperationMax: root::spv::GroupOperation = 2147483647;
-        pub type GroupOperation = ::std::os::raw::c_uint;
+        pub type GroupOperation = ::std::os::raw::c_int;
         impl KernelEnqueueFlags {
             pub const KernelEnqueueFlagsNoWait: root::spv::KernelEnqueueFlags =
                 root::spv::KernelEnqueueFlags(0);
@@ -1476,12 +1476,12 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct KernelEnqueueFlags(pub ::std::os::raw::c_uint);
+        pub struct KernelEnqueueFlags(pub ::std::os::raw::c_int);
         pub const KernelProfilingInfoShift_KernelProfilingInfoCmdExecTimeShift:
             root::spv::KernelProfilingInfoShift = 0;
         pub const KernelProfilingInfoShift_KernelProfilingInfoMax:
             root::spv::KernelProfilingInfoShift = 2147483647;
-        pub type KernelProfilingInfoShift = ::std::os::raw::c_uint;
+        pub type KernelProfilingInfoShift = ::std::os::raw::c_int;
         impl KernelProfilingInfoMask {
             pub const KernelProfilingInfoMaskNone: root::spv::KernelProfilingInfoMask =
                 root::spv::KernelProfilingInfoMask(0);
@@ -1518,7 +1518,7 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct KernelProfilingInfoMask(pub ::std::os::raw::c_uint);
+        pub struct KernelProfilingInfoMask(pub ::std::os::raw::c_int);
         pub const Capability_CapabilityMatrix: root::spv::Capability = 0;
         pub const Capability_CapabilityShader: root::spv::Capability = 1;
         pub const Capability_CapabilityGeometry: root::spv::Capability = 2;
@@ -1787,7 +1787,7 @@ pub mod root {
         pub const Capability_CapabilitySplitBarrierINTEL: root::spv::Capability = 6141;
         pub const Capability_CapabilityGroupUniformArithmeticKHR: root::spv::Capability = 6400;
         pub const Capability_CapabilityMax: root::spv::Capability = 2147483647;
-        pub type Capability = ::std::os::raw::c_uint;
+        pub type Capability = ::std::os::raw::c_int;
         pub const RayFlagsShift_RayFlagsOpaqueKHRShift: root::spv::RayFlagsShift = 0;
         pub const RayFlagsShift_RayFlagsNoOpaqueKHRShift: root::spv::RayFlagsShift = 1;
         pub const RayFlagsShift_RayFlagsTerminateOnFirstHitKHRShift: root::spv::RayFlagsShift = 2;
@@ -1801,7 +1801,7 @@ pub mod root {
         pub const RayFlagsShift_RayFlagsSkipTrianglesKHRShift: root::spv::RayFlagsShift = 8;
         pub const RayFlagsShift_RayFlagsSkipAABBsKHRShift: root::spv::RayFlagsShift = 9;
         pub const RayFlagsShift_RayFlagsMax: root::spv::RayFlagsShift = 2147483647;
-        pub type RayFlagsShift = ::std::os::raw::c_uint;
+        pub type RayFlagsShift = ::std::os::raw::c_int;
         impl RayFlagsMask {
             pub const RayFlagsMaskNone: root::spv::RayFlagsMask = root::spv::RayFlagsMask(0);
         }
@@ -1871,25 +1871,25 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct RayFlagsMask(pub ::std::os::raw::c_uint);
+        pub struct RayFlagsMask(pub ::std::os::raw::c_int);
         pub const RayQueryIntersection_RayQueryIntersectionRayQueryCandidateIntersectionKHR:
             root::spv::RayQueryIntersection = 0;
         pub const RayQueryIntersection_RayQueryIntersectionRayQueryCommittedIntersectionKHR:
             root::spv::RayQueryIntersection = 1;
         pub const RayQueryIntersection_RayQueryIntersectionMax: root::spv::RayQueryIntersection =
             2147483647;
-        pub type RayQueryIntersection = ::std::os::raw::c_uint;
+        pub type RayQueryIntersection = ::std::os::raw::c_int;
         pub const RayQueryCommittedIntersectionType_RayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionNoneKHR : root :: spv :: RayQueryCommittedIntersectionType = 0 ;
         pub const RayQueryCommittedIntersectionType_RayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionTriangleKHR : root :: spv :: RayQueryCommittedIntersectionType = 1 ;
         pub const RayQueryCommittedIntersectionType_RayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionGeneratedKHR : root :: spv :: RayQueryCommittedIntersectionType = 2 ;
         pub const RayQueryCommittedIntersectionType_RayQueryCommittedIntersectionTypeMax:
             root::spv::RayQueryCommittedIntersectionType = 2147483647;
-        pub type RayQueryCommittedIntersectionType = ::std::os::raw::c_uint;
+        pub type RayQueryCommittedIntersectionType = ::std::os::raw::c_int;
         pub const RayQueryCandidateIntersectionType_RayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionTriangleKHR : root :: spv :: RayQueryCandidateIntersectionType = 0 ;
         pub const RayQueryCandidateIntersectionType_RayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionAABBKHR : root :: spv :: RayQueryCandidateIntersectionType = 1 ;
         pub const RayQueryCandidateIntersectionType_RayQueryCandidateIntersectionTypeMax:
             root::spv::RayQueryCandidateIntersectionType = 2147483647;
-        pub type RayQueryCandidateIntersectionType = ::std::os::raw::c_uint;
+        pub type RayQueryCandidateIntersectionType = ::std::os::raw::c_int;
         pub const FragmentShadingRateShift_FragmentShadingRateVertical2PixelsShift:
             root::spv::FragmentShadingRateShift = 0;
         pub const FragmentShadingRateShift_FragmentShadingRateVertical4PixelsShift:
@@ -1900,7 +1900,7 @@ pub mod root {
             root::spv::FragmentShadingRateShift = 3;
         pub const FragmentShadingRateShift_FragmentShadingRateMax:
             root::spv::FragmentShadingRateShift = 2147483647;
-        pub type FragmentShadingRateShift = ::std::os::raw::c_uint;
+        pub type FragmentShadingRateShift = ::std::os::raw::c_int;
         impl FragmentShadingRateMask {
             pub const FragmentShadingRateMaskNone: root::spv::FragmentShadingRateMask =
                 root::spv::FragmentShadingRateMask(0);
@@ -1949,15 +1949,15 @@ pub mod root {
         }
         #[repr(transparent)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-        pub struct FragmentShadingRateMask(pub ::std::os::raw::c_uint);
+        pub struct FragmentShadingRateMask(pub ::std::os::raw::c_int);
         pub const FPDenormMode_FPDenormModePreserve: root::spv::FPDenormMode = 0;
         pub const FPDenormMode_FPDenormModeFlushToZero: root::spv::FPDenormMode = 1;
         pub const FPDenormMode_FPDenormModeMax: root::spv::FPDenormMode = 2147483647;
-        pub type FPDenormMode = ::std::os::raw::c_uint;
+        pub type FPDenormMode = ::std::os::raw::c_int;
         pub const FPOperationMode_FPOperationModeIEEE: root::spv::FPOperationMode = 0;
         pub const FPOperationMode_FPOperationModeALT: root::spv::FPOperationMode = 1;
         pub const FPOperationMode_FPOperationModeMax: root::spv::FPOperationMode = 2147483647;
-        pub type FPOperationMode = ::std::os::raw::c_uint;
+        pub type FPOperationMode = ::std::os::raw::c_int;
         pub const QuantizationModes_QuantizationModesTRN: root::spv::QuantizationModes = 0;
         pub const QuantizationModes_QuantizationModesTRN_ZERO: root::spv::QuantizationModes = 1;
         pub const QuantizationModes_QuantizationModesRND: root::spv::QuantizationModes = 2;
@@ -1967,20 +1967,20 @@ pub mod root {
         pub const QuantizationModes_QuantizationModesRND_CONV: root::spv::QuantizationModes = 6;
         pub const QuantizationModes_QuantizationModesRND_CONV_ODD: root::spv::QuantizationModes = 7;
         pub const QuantizationModes_QuantizationModesMax: root::spv::QuantizationModes = 2147483647;
-        pub type QuantizationModes = ::std::os::raw::c_uint;
+        pub type QuantizationModes = ::std::os::raw::c_int;
         pub const OverflowModes_OverflowModesWRAP: root::spv::OverflowModes = 0;
         pub const OverflowModes_OverflowModesSAT: root::spv::OverflowModes = 1;
         pub const OverflowModes_OverflowModesSAT_ZERO: root::spv::OverflowModes = 2;
         pub const OverflowModes_OverflowModesSAT_SYM: root::spv::OverflowModes = 3;
         pub const OverflowModes_OverflowModesMax: root::spv::OverflowModes = 2147483647;
-        pub type OverflowModes = ::std::os::raw::c_uint;
+        pub type OverflowModes = ::std::os::raw::c_int;
         pub const PackedVectorFormat_PackedVectorFormatPackedVectorFormat4x8Bit:
             root::spv::PackedVectorFormat = 0;
         pub const PackedVectorFormat_PackedVectorFormatPackedVectorFormat4x8BitKHR:
             root::spv::PackedVectorFormat = 0;
         pub const PackedVectorFormat_PackedVectorFormatMax: root::spv::PackedVectorFormat =
             2147483647;
-        pub type PackedVectorFormat = ::std::os::raw::c_uint;
+        pub type PackedVectorFormat = ::std::os::raw::c_int;
         pub const Op_OpNop: root::spv::Op = 0;
         pub const Op_OpUndef: root::spv::Op = 1;
         pub const Op_OpSourceContinued: root::spv::Op = 2;
@@ -2677,21 +2677,21 @@ pub mod root {
         pub const Op_OpGroupLogicalOrKHR: root::spv::Op = 6407;
         pub const Op_OpGroupLogicalXorKHR: root::spv::Op = 6408;
         pub const Op_OpMax: root::spv::Op = 2147483647;
-        pub type Op = ::std::os::raw::c_uint;
+        pub type Op = ::std::os::raw::c_int;
     }
     pub mod std {
         #[allow(unused_imports)]
         use self::super::super::root;
-    }
-    pub mod __gnu_cxx {
-        #[allow(unused_imports)]
-        use self::super::super::root;
+        pub mod tr1 {
+            #[allow(unused_imports)]
+            use self::super::super::super::root;
+        }
     }
     pub mod spirv_cross {
         #[allow(unused_imports)]
         use self::super::super::root;
         pub type TypeID = u32;
-        #[repr(u32)]
+        #[repr(i32)]
         #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
         pub enum SPIRType_BaseType {
             Unknown = 0,
@@ -2736,14 +2736,14 @@ pub mod root {
         pub const MSLSamplerCoord_MSL_SAMPLER_COORD_PIXEL: root::spirv_cross::MSLSamplerCoord = 1;
         pub const MSLSamplerCoord_MSL_SAMPLER_INT_MAX: root::spirv_cross::MSLSamplerCoord =
             2147483647;
-        pub type MSLSamplerCoord = ::std::os::raw::c_uint;
+        pub type MSLSamplerCoord = ::std::os::raw::c_int;
         pub const MSLSamplerFilter_MSL_SAMPLER_FILTER_NEAREST: root::spirv_cross::MSLSamplerFilter =
             0;
         pub const MSLSamplerFilter_MSL_SAMPLER_FILTER_LINEAR: root::spirv_cross::MSLSamplerFilter =
             1;
         pub const MSLSamplerFilter_MSL_SAMPLER_FILTER_INT_MAX: root::spirv_cross::MSLSamplerFilter =
             2147483647;
-        pub type MSLSamplerFilter = ::std::os::raw::c_uint;
+        pub type MSLSamplerFilter = ::std::os::raw::c_int;
         pub const MSLSamplerMipFilter_MSL_SAMPLER_MIP_FILTER_NONE:
             root::spirv_cross::MSLSamplerMipFilter = 0;
         pub const MSLSamplerMipFilter_MSL_SAMPLER_MIP_FILTER_NEAREST:
@@ -2752,7 +2752,7 @@ pub mod root {
             root::spirv_cross::MSLSamplerMipFilter = 2;
         pub const MSLSamplerMipFilter_MSL_SAMPLER_MIP_FILTER_INT_MAX:
             root::spirv_cross::MSLSamplerMipFilter = 2147483647;
-        pub type MSLSamplerMipFilter = ::std::os::raw::c_uint;
+        pub type MSLSamplerMipFilter = ::std::os::raw::c_int;
         pub const MSLSamplerAddress_MSL_SAMPLER_ADDRESS_CLAMP_TO_ZERO:
             root::spirv_cross::MSLSamplerAddress = 0;
         pub const MSLSamplerAddress_MSL_SAMPLER_ADDRESS_CLAMP_TO_EDGE:
@@ -2765,7 +2765,7 @@ pub mod root {
             root::spirv_cross::MSLSamplerAddress = 4;
         pub const MSLSamplerAddress_MSL_SAMPLER_ADDRESS_INT_MAX:
             root::spirv_cross::MSLSamplerAddress = 2147483647;
-        pub type MSLSamplerAddress = ::std::os::raw::c_uint;
+        pub type MSLSamplerAddress = ::std::os::raw::c_int;
         pub const MSLSamplerCompareFunc_MSL_SAMPLER_COMPARE_FUNC_NEVER:
             root::spirv_cross::MSLSamplerCompareFunc = 0;
         pub const MSLSamplerCompareFunc_MSL_SAMPLER_COMPARE_FUNC_LESS:
@@ -2784,7 +2784,7 @@ pub mod root {
             root::spirv_cross::MSLSamplerCompareFunc = 7;
         pub const MSLSamplerCompareFunc_MSL_SAMPLER_COMPARE_FUNC_INT_MAX:
             root::spirv_cross::MSLSamplerCompareFunc = 2147483647;
-        pub type MSLSamplerCompareFunc = ::std::os::raw::c_uint;
+        pub type MSLSamplerCompareFunc = ::std::os::raw::c_int;
         pub const MSLSamplerBorderColor_MSL_SAMPLER_BORDER_COLOR_TRANSPARENT_BLACK:
             root::spirv_cross::MSLSamplerBorderColor = 0;
         pub const MSLSamplerBorderColor_MSL_SAMPLER_BORDER_COLOR_OPAQUE_BLACK:
@@ -2793,7 +2793,7 @@ pub mod root {
             root::spirv_cross::MSLSamplerBorderColor = 2;
         pub const MSLSamplerBorderColor_MSL_SAMPLER_BORDER_COLOR_INT_MAX:
             root::spirv_cross::MSLSamplerBorderColor = 2147483647;
-        pub type MSLSamplerBorderColor = ::std::os::raw::c_uint;
+        pub type MSLSamplerBorderColor = ::std::os::raw::c_int;
         pub const MSLFormatResolution_MSL_FORMAT_RESOLUTION_444:
             root::spirv_cross::MSLFormatResolution = 0;
         pub const MSLFormatResolution_MSL_FORMAT_RESOLUTION_422:
@@ -2802,14 +2802,14 @@ pub mod root {
             root::spirv_cross::MSLFormatResolution = 2;
         pub const MSLFormatResolution_MSL_FORMAT_RESOLUTION_INT_MAX:
             root::spirv_cross::MSLFormatResolution = 2147483647;
-        pub type MSLFormatResolution = ::std::os::raw::c_uint;
+        pub type MSLFormatResolution = ::std::os::raw::c_int;
         pub const MSLChromaLocation_MSL_CHROMA_LOCATION_COSITED_EVEN:
             root::spirv_cross::MSLChromaLocation = 0;
         pub const MSLChromaLocation_MSL_CHROMA_LOCATION_MIDPOINT:
             root::spirv_cross::MSLChromaLocation = 1;
         pub const MSLChromaLocation_MSL_CHROMA_LOCATION_INT_MAX:
             root::spirv_cross::MSLChromaLocation = 2147483647;
-        pub type MSLChromaLocation = ::std::os::raw::c_uint;
+        pub type MSLChromaLocation = ::std::os::raw::c_int;
         pub const MSLComponentSwizzle_MSL_COMPONENT_SWIZZLE_IDENTITY:
             root::spirv_cross::MSLComponentSwizzle = 0;
         pub const MSLComponentSwizzle_MSL_COMPONENT_SWIZZLE_ZERO:
@@ -2826,7 +2826,7 @@ pub mod root {
             root::spirv_cross::MSLComponentSwizzle = 6;
         pub const MSLComponentSwizzle_MSL_COMPONENT_SWIZZLE_INT_MAX:
             root::spirv_cross::MSLComponentSwizzle = 2147483647;
-        pub type MSLComponentSwizzle = ::std::os::raw::c_uint;
+        pub type MSLComponentSwizzle = ::std::os::raw::c_int;
         pub const MSLSamplerYCbCrModelConversion_MSL_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY:
             root::spirv_cross::MSLSamplerYCbCrModelConversion = 0;
         pub const MSLSamplerYCbCrModelConversion_MSL_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_IDENTITY : root :: spirv_cross :: MSLSamplerYCbCrModelConversion = 1 ;
@@ -2837,14 +2837,14 @@ pub mod root {
         pub const MSLSamplerYCbCrModelConversion_MSL_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_BT_2020 : root :: spirv_cross :: MSLSamplerYCbCrModelConversion = 4 ;
         pub const MSLSamplerYCbCrModelConversion_MSL_SAMPLER_YCBCR_MODEL_CONVERSION_INT_MAX:
             root::spirv_cross::MSLSamplerYCbCrModelConversion = 2147483647;
-        pub type MSLSamplerYCbCrModelConversion = ::std::os::raw::c_uint;
+        pub type MSLSamplerYCbCrModelConversion = ::std::os::raw::c_int;
         pub const MSLSamplerYCbCrRange_MSL_SAMPLER_YCBCR_RANGE_ITU_FULL:
             root::spirv_cross::MSLSamplerYCbCrRange = 0;
         pub const MSLSamplerYCbCrRange_MSL_SAMPLER_YCBCR_RANGE_ITU_NARROW:
             root::spirv_cross::MSLSamplerYCbCrRange = 1;
         pub const MSLSamplerYCbCrRange_MSL_SAMPLER_YCBCR_RANGE_INT_MAX:
             root::spirv_cross::MSLSamplerYCbCrRange = 2147483647;
-        pub type MSLSamplerYCbCrRange = ::std::os::raw::c_uint;
+        pub type MSLSamplerYCbCrRange = ::std::os::raw::c_int;
         #[repr(C)]
         #[derive(Debug, Copy, Clone)]
         pub struct MSLConstexprSampler {
@@ -2879,7 +2879,7 @@ pub mod root {
     pub type ScInternalCompilerHlsl = ::std::os::raw::c_void;
     pub type ScInternalCompilerMsl = ::std::os::raw::c_void;
     pub type ScInternalCompilerGlsl = ::std::os::raw::c_void;
-    #[repr(u32)]
+    #[repr(i32)]
     #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
     pub enum ScInternalResult {
         Success = 0,
