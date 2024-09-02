@@ -1,3 +1,7 @@
+## ⚠️ Deprecated ⚠️
+Use https://github.com/SnowflakePowered/spirv-cross2 instead.
+
+---
 # librashader-spirv-cross
 
 (Hopefully) temporary fork of [spirv_cross](https://github.com/grovesNL/spirv_cross) while some changes get upstreamed.
