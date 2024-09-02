@@ -2,6 +2,10 @@
 Use https://github.com/SnowflakePowered/spirv-cross2 instead.
 
 ---
+
+<details>
+<summary>Old README</summary>
+  
 # librashader-spirv-cross
 
 (Hopefully) temporary fork of [spirv_cross](https://github.com/grovesNL/spirv_cross) while some changes get upstreamed.
@@ -53,3 +57,5 @@ for inclusion in this project by you, as defined in the Apache 2.0 license,
 shall be dual licensed as above, without any additional terms or conditions.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+</details>
